@@ -3,7 +3,11 @@
 import { HomeIcon, SearchIcon, PenSquare, Heart, User2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import LogoThreads from '../assets/threadsLogo.svg'
+import ThreadsLogo  from '../../assets/threadsLogo.svg'
+    
+    import DropdownMenuHome from './dropdown/dropdown'
+
+
 
 const menus = [
   {
@@ -39,7 +43,7 @@ export default function Home() {
     <main >
 
    <nav className="flex justify-between items-center py-1 px-6">
-    <Image src={LogoThreads} height={28} alt="Logo" />  
+   <Image src={ThreadsLogo} alt="Logo"/>
      <ul className="flex">
       {menus.map((menu) => (
           <li 
@@ -53,6 +57,8 @@ export default function Home() {
       ))}
      
      </ul>
+    
+    <DropdownMenuHome/>
    </nav>
       
     </main>

@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html className='bg-threads-bg-default text-threads-text-threads' lang="en">
+    <html className='bg-threads-bg-default text-threads-text-primary' lang="en">
       <body className={inter.className}>{children}</body>
     </html>
   )
