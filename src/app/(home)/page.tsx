@@ -5,7 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ThreadsLogo  from '../../assets/threadsLogo.svg'
     
-    import DropdownMenuHome from './dropdown/dropdown'
+import DropdownMenuHome from './dropdown/dropdown'
+import HomePost from './post'
 
 
 
@@ -60,7 +61,13 @@ export default function Home() {
     
     <DropdownMenuHome/>
    </nav>
-      
-    </main>
+
+   <article className="max-w-lg m-auto">
+     <section>
+       <HomePost/>
+     </section>
+     <hr className="mt-4 h-[0.5px] opacity-20" />
+   </article>
+  </main>
   )
 }
