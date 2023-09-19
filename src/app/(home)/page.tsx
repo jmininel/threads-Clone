@@ -10,6 +10,7 @@ import HomePost from './post'
 
 import styles from './styles.module.css'
 import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 
 
@@ -73,10 +74,24 @@ export default function Home() {
 
    <article>
      <section  className="container">
-        <div className={styles.avatar}></div>
-        <div className={styles.username}></div>
-        <div className={styles.time}></div>
-        <div className={styles.separator}></div>
+        <div className={styles.avatar}>
+        <Avatar>
+         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+         <AvatarFallback>CN</AvatarFallback>
+       </Avatar>
+        </div>
+
+        <div className={styles.username}>
+          <p>Juliana Mininel</p>
+        </div>
+
+        <div className={styles.time}>
+          10H...
+        </div>
+
+        <div className={styles.separator}>
+          <span></span>
+        </div>
         <div className={styles.reply_avatar}></div>
         <div className={styles.post}></div>
         <div className={styles.actions}></div>
