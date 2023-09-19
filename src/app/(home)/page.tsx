@@ -1,6 +1,6 @@
 
 
-import { HomeIcon, SearchIcon, PenSquare, Heart, User2 } from 'lucide-react'
+import { HomeIcon, SearchIcon, PenSquare, Heart, User2, MessageCircle, Repeat2, Send } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ThreadsLogo  from '../../assets/threadsLogo.svg'
@@ -10,7 +10,9 @@ import HomePost from './post'
 
 import styles from './styles.module.css'
 import { cn } from "@/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+
+import { PostAvatar } from './post/post-avatar'
+import { RepliesAvatar } from './post/replies-avatar'
 
 
 
@@ -69,16 +71,12 @@ export default function Home() {
      <section>
        <HomePost/>
      </section>
-     <hr className="my-4 h-[0.5px] opacity-20" />
-   </article>
 
-   <article>
-     <section  className="container">
+     <hr className="my-4 h-[0.5px] opacity-20" />
+  
+     <section  className={styles.container}>
         <div className={styles.avatar}>
-        <Avatar>
-         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-         <AvatarFallback>CN</AvatarFallback>
-       </Avatar>
+        <PostAvatar src="https://github.com/jmininel.png" fallbackInitials="Shadcn"/>
         </div>
 
         <div className={styles.username}>
@@ -90,12 +88,46 @@ export default function Home() {
         </div>
 
         <div className={styles.separator}>
-          <span></span>
+        <span className="border-l-zinc-700 h-full border-l-[2px] block ml-5 my-2"></span>
         </div>
-        <div className={styles.reply_avatar}></div>
-        <div className={styles.post}></div>
-        <div className={styles.actions}></div>
-        <div className={styles.likes_and_replaces}></div>
+
+        <div className={cn(styles.reply_avatar, "m-auto")}>
+          <RepliesAvatar
+            data={[
+              {
+                src:"https://github.com/jmininel.png", 
+                fallbackInitials:"JM"
+              },
+              {
+                src:"https://github.com/joaobibiano.png", 
+                fallbackInitials:"JM"
+              }
+            ]}
+          />
+        </div>
+
+        <div className={styles.post}>
+        <p className="">
+              Recomendar o NextJS ou remix como default way para criar um app
+              react foi o melhor conselho que o core team poderia fazer. No
+              começo eu torci o nariz, mas hoje vejo que é o que mais faz
+              sentido. Além do que obviamente a Vercel vai dominar o react em
+              breve.
+            </p>
+        </div>
+
+        <div className={cn(styles.actions, "flex space-x-2 mt-3 gap-2")}>
+          <Heart/>
+          <MessageCircle/>
+          <Repeat2/>
+          <Send/>
+        </div>
+
+        <div className={cn(styles.likes_and_replies, "mt-3")}>
+          <span className="text-sm text-neutral-500">
+            7 replies 23 likes
+          </span>
+        </div>
      </section>
    </article>
   </main>
