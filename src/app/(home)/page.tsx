@@ -8,6 +8,9 @@ import ThreadsLogo  from '../../assets/threadsLogo.svg'
 import DropdownMenuHome from './dropdown/dropdown'
 import HomePost from './post'
 
+import styles from "./styles.module.css";
+import { cn } from "@/lib/utils";
+
 
 
 const menus = [
@@ -42,9 +45,8 @@ const menus = [
 export default function Home() {
   return (
     <main >
-
    <nav className="flex justify-between items-center py-1 px-6">
-   <Image src={ThreadsLogo} alt="Logo"/>
+   <Image src={ThreadsLogo} height={32} alt="Logo"/>
      <ul className="flex">
       {menus.map((menu) => (
           <li 
@@ -66,7 +68,7 @@ export default function Home() {
      <section>
        <HomePost/>
      </section>
-     <hr className="mt-4 h-[0.5px] opacity-20" />
+     <hr className="my-4 h-[0.5px] opacity-20" />
    </article>
   </main>
   )
