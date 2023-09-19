@@ -1,0 +1,29 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "avatar username time"
+    "separator post post"
+    "separator actions ."
+    "reply_avatar likes_and_replaces .";
+}
+
+.avatar { grid-area: avatar; }
+
+.username { grid-area: username; }
+
+.time { grid-area: time; }
+
+.separator { grid-area: separator; }
+
+.reply_avatar { grid-area: reply_avatar; }
+
+.post { grid-area: post; }
+
+.actions { grid-area: actions; }
+
+.likes_and_replaces { grid-area: likes_and_replaces; }

@@ -8,7 +8,7 @@ import ThreadsLogo  from '../../assets/threadsLogo.svg'
 import DropdownMenuHome from './dropdown/dropdown'
 import HomePost from './post'
 
-import styles from "./styles.module.css";
+import styles from './styles.module.css'
 import { cn } from "@/lib/utils";
 
 
@@ -69,6 +69,19 @@ export default function Home() {
        <HomePost/>
      </section>
      <hr className="my-4 h-[0.5px] opacity-20" />
+   </article>
+
+   <article>
+     <section  className="container">
+        <div className={styles.avatar}></div>
+        <div className={styles.username}></div>
+        <div className={styles.time}></div>
+        <div className={styles.separator}></div>
+        <div className={styles.reply_avatar}></div>
+        <div className={styles.post}></div>
+        <div className={styles.actions}></div>
+        <div className={styles.likes_and_replaces}></div>
+     </section>
    </article>
   </main>
   )
