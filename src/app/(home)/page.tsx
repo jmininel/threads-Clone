@@ -1,8 +1,12 @@
 
-
-import { HomeIcon, SearchIcon, PenSquare, Heart, User2, MessageCircle, Repeat2, Send } from 'lucide-react'
+import { 
+  Heart,
+  MessageCircle,
+  Repeat2,
+  Send,
+  MoreHorizontal,
+} from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import ThreadsLogo  from '../../assets/threadsLogo.svg'
     
 import DropdownMenuHome from './dropdown/dropdown'
@@ -13,57 +17,16 @@ import { cn } from "@/lib/utils";
 
 import { PostAvatar } from './post/post-avatar'
 import { RepliesAvatar } from './post/replies-avatar'
-
-
-
-const menus = [
-  {
-    Logo: HomeIcon,
-    alt: "Sua página inicial",
-    route: "/",
-  },
-  {
-    Logo: SearchIcon,
-    alt: "Pesquise coisas de seu interesse",
-    route: "/search",
-  },
-  {
-    Logo: PenSquare,
-    alt: "O que você anda pensando",
-    route: "/post",
-  },
-  {
-    Logo: Heart,
-    alt: "Atividade",
-    route: "/activity",
-  },
-  {
-    Logo: User2,
-    alt: "Seu perfil",
-    route: "/profile",
-  },
-]
-
+import Navbar from './navbar'
+import { Button } from '@/components/ui/button'
 
 export default function Home() {
   return (
     <main >
    <nav className="flex justify-between items-center py-1 px-6">
    <Image src={ThreadsLogo} height={32} alt="Logo"/>
-     <ul className="flex">
-      {menus.map((menu) => (
-          <li 
-          title={menu.alt}
-          key={menu.alt}
-          className="px-7 py-5 hover:bg-neutral-800 rounded-xl transition-all duration-300 ease-in-out">
-          <Link href={menu.route}>
-             <menu.Logo size={28} className="text-neutral-600"/>
-         </Link>    
-          </li>
-      ))}
-     
-     </ul>
-    
+   
+    <Navbar/>
     <DropdownMenuHome/>
    </nav>
 
@@ -83,8 +46,11 @@ export default function Home() {
           <p>Juliana Mininel</p>
         </div>
 
-        <div className={styles.time}>
-          10H...
+        <div className={cn(styles.time, "flex items-center gap-1")}>
+          <span>10H</span>
+          <Button variant="outline" size="icon" className="rounded-full border-none" >
+            <MoreHorizontal/>
+          </Button>
         </div>
 
         <div className={styles.separator}>
