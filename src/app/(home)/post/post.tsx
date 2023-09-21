@@ -9,7 +9,7 @@ export default function HomePost () {
    <PostAvatar src="https://github.com/shadcn.png" fallbackInitials="Shadcn"/>
 
     <NewPost />
-    <Button disabled variant="outline" className="rounded-xl text-neutral-500 ">
+    <Button disabled variant="ghost" className="rounded-xl text-neutral-500 ">
        Post
     </Button>
     </div>

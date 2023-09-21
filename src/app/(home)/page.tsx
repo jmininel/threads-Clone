@@ -19,6 +19,94 @@ import { PostAvatar } from './post/post-avatar'
 import { RepliesAvatar } from './post/replies-avatar'
 import Navbar from './navbar'
 import { Button } from '@/components/ui/button'
+import ReactMarkdown from "react-markdown";
+
+import { formatDistanceStrict } from 'date-fns'
+
+const posts = [
+  {
+    id: 1,
+    user: {
+      profilePicture: {
+        url: "https://github.com/joaobibiano.png",
+        initials: "JB",
+      },
+      name: "ojoaobibiano",
+    },
+    createdAt: "2023-09-19T15:00:00.000Z",
+    content:
+      "Clone do Threads com NextJS 👀? O que acham ![img](/images/dog.jpeg)",
+    replies: {
+      count: 7,
+      avatars: [
+        {
+          src: "https://github.com/eduardobertozi.png",
+          fallbackInitials: "EB",
+        },
+        {
+          src: "https://github.com/talissonoliveira.png",
+          fallbackInitials: "TO",
+        },
+      ],
+    },
+    likes: 23,
+  },
+  {
+    id: 2,
+    user: {
+      profilePicture: {
+        url: "https://github.com/someuser.png",
+        initials: "SU",
+      },
+      name: "someuser",
+    },
+    createdAt: "2023-09-19T16:30:00.000Z",
+    content:
+      "Just launched my new portfolio website using React and Gatsby. I'm excited to showcase my projects and skills! Check it out: https://www.myportfolio.com",
+    replies: {
+      count: 5,
+      avatars: [
+        {
+          src: "https://github.com/user1.png",
+          fallbackInitials: "U1",
+        },
+        {
+          src: "https://github.com/user2.png",
+          fallbackInitials: "U2",
+        },
+      ],
+    },
+    likes: 15,
+  },
+  {
+    id: 3,
+    user: {
+      profilePicture: {
+        url: "https://github.com/anotheruser.png",
+        initials: "AU",
+      },
+      name: "anotheruser",
+    },
+    createdAt: "2023-09-19T17:45:00.000Z",
+    content:
+      "Just started learning ReactJS, and it's amazing! Any tips for beginners?",
+    replies: {
+      count: 12,
+      avatars: [
+        {
+          src: "https://github.com/user3.png",
+          fallbackInitials: "U3",
+        },
+        {
+          src: "https://github.com/user4.png",
+          fallbackInitials: "U4",
+        },
+      ],
+    },
+    likes: 8,
+  },
+];
+
 
 export default function Home() {
   return (
@@ -36,65 +124,77 @@ export default function Home() {
      </section>
 
      <hr className="my-4 h-[0.5px] opacity-20" />
+
+    <div className="space-y-6">
+      {posts.map((post) => (
+              <section key={post.id}  className={styles.container}>
+              <div className={styles.avatar}>
+              <PostAvatar src={post.user.profilePicture.url}
+              fallbackInitials={post.user.profilePicture.initials}/>
+              </div>
+      
+              <div className={styles.username}>
+                <p>{post.user.name}</p>
+              </div>
+      
+              <div className={cn(styles.time, "flex items-center gap-1")}>
+                <span className="min-w-[60px] text-gray-500" 
+                  title={new Date(post.createdAt).toLocaleString()}
+                >
+                {formatDistanceStrict(
+                    new Date(post.createdAt),
+                    new Date(),
+                    {
+                      addSuffix: false,
+                    }
+                  )}
+                </span>
+                <Button variant="ghost" size="icon" className="rounded-full border-none" >
+                  <MoreHorizontal/>
+                </Button>
+              </div>
+      
+              <div className={styles.separator}>
+              <span className="border-l-zinc-700 h-full border-l-[2px] block ml-5 my-2"></span>
+              </div>
+      
+              <div className={cn(styles.reply_avatar, "m-auto")}>
+                <RepliesAvatar
+                  data={post.replies.avatars}
+                />
+              </div>
+      
+              <div className={styles.post}>
+                  <ReactMarkdown
+                    components={{
+                      img: ({ node, ...props }) => (
+                        <img
+                          className={cn(props.className, "mt-6 rounded-lg")}
+                          {...props}
+                        />
+                      ),
+                    }}
+                  >
+                    {post.content}
+                  </ReactMarkdown>
+                </div>
+      
+              <div className={cn(styles.actions, "flex space-x-2 mt-3 gap-2")}>
+                <Heart/>
+                <MessageCircle/>
+                <Repeat2/>
+                <Send/>
+              </div>
+      
+              <div className={cn(styles.likes_and_replies, "mt-3")}>
+                <span className="text-sm text-neutral-500">
+                  {post.replies.count} replies · {post.likes} likes
+                </span>
+              </div>
+          </section>
+      ))}
+    </div>
   
-     <section  className={styles.container}>
-        <div className={styles.avatar}>
-        <PostAvatar src="https://github.com/jmininel.png" fallbackInitials="Shadcn"/>
-        </div>
-
-        <div className={styles.username}>
-          <p>Juliana Mininel</p>
-        </div>
-
-        <div className={cn(styles.time, "flex items-center gap-1")}>
-          <span>10H</span>
-          <Button variant="outline" size="icon" className="rounded-full border-none" >
-            <MoreHorizontal/>
-          </Button>
-        </div>
-
-        <div className={styles.separator}>
-        <span className="border-l-zinc-700 h-full border-l-[2px] block ml-5 my-2"></span>
-        </div>
-
-        <div className={cn(styles.reply_avatar, "m-auto")}>
-          <RepliesAvatar
-            data={[
-              {
-                src:"https://github.com/jmininel.png", 
-                fallbackInitials:"JM"
-              },
-              {
-                src:"https://github.com/joaobibiano.png", 
-                fallbackInitials:"JM"
-              }
-            ]}
-          />
-        </div>
-
-        <div className={styles.post}>
-        <p className="">
-              Recomendar o NextJS ou remix como default way para criar um app
-              react foi o melhor conselho que o core team poderia fazer. No
-              começo eu torci o nariz, mas hoje vejo que é o que mais faz
-              sentido. Além do que obviamente a Vercel vai dominar o react em
-              breve.
-            </p>
-        </div>
-
-        <div className={cn(styles.actions, "flex space-x-2 mt-3 gap-2")}>
-          <Heart/>
-          <MessageCircle/>
-          <Repeat2/>
-          <Send/>
-        </div>
-
-        <div className={cn(styles.likes_and_replies, "mt-3")}>
-          <span className="text-sm text-neutral-500">
-            7 replies 23 likes
-          </span>
-        </div>
-     </section>
    </article>
   </main>
   )
